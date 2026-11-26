@@ -4,13 +4,9 @@ public class BankSampah19 {
 
     public static double[] inputSetoran(int n) {
         Scanner sc = new Scanner(System.in);
-
-        System.out.print("Masukkan jumlah nasabah: ");
-        n = sc.nextInt();
-
         double[] dataSetoran = new double[n];
 
-        System.out.println("Setoran Nasabah:");
+        System.out.println("\nSetoran Nasabah:");
         for (int i = 0; i < n; i++) {
             System.out.print(" Masukkan setoran nasabah ke-" + (i + 1) + ": ");
             dataSetoran[i] = sc.nextDouble();
@@ -34,11 +30,8 @@ public class BankSampah19 {
         return total;
     }
 
-    public static double hitungSaldo(double[] dataSetoran) {
-        double saldo = 0;
-        for (int i = 0; i < dataSetoran.length; i++) {
-            saldo += dataSetoran[i] * 3000;
-        }
+    public static double hitungSaldo(double berat, double hargaPerKg) {
+        double saldo = berat * hargaPerKg;
         return saldo;
     }
 
@@ -47,7 +40,7 @@ public class BankSampah19 {
 
         for (int i = 0; i < dataSetoran.length; i++) {
             if (dataSetoran[i] > dataSetoran[terbanyak]) {
-                terbanyak = (i + 1);
+                terbanyak = i;
             }
         }
         return terbanyak;
@@ -57,17 +50,23 @@ public class BankSampah19 {
         Scanner sc = new Scanner(System.in);
         int n = 0;
 
+        System.out.print("Masukkan jumlah nasabah: ");
+        n = sc.nextInt();
+
         double[] dataSetoran = inputSetoran(n);
         tampilSetoran(dataSetoran);
 
         double total = totalSetoran(dataSetoran);
         System.out.println("\nTotal setoran nasabah: " + total);
 
-        double saldo = hitungSaldo(dataSetoran);
-        System.out.println("\nTotal saldo nasabah: " + saldo);
+        System.out.println("\nSaldo setiap nasabah: ");
+        for (int i = 0; i < dataSetoran.length; i++) {
+            Double saldo = hitungSaldo(dataSetoran[i], 3000);
+            System.out.println("Saldo nasabah ke-" + (i + 1) + ": Rp" + saldo);
+        }
 
-        double terbanyak = nasabahTerbanyak(dataSetoran, n);
-        System.out.println("\nNasabah terbanyak: " + terbanyak);
+        int terbanyak = nasabahTerbanyak(dataSetoran, n);
+        System.out.println("\nNasabah terbanyak: " + (terbanyak + 1));
 
         sc.close();
     }

@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class HitungBalok19 {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int p, l, t, L, vol;
+        int p, l, t, L, vol, Lp;
 
         System.out.println("Masukkan panjang");
         p = input.nextInt();
@@ -20,6 +20,9 @@ public class HitungBalok19 {
         vol = p * l * t;
         System.out.println("Volume balok adalah " + vol);
 
+        Lp = 2 * (hitungLuas(p, l) + (p * t) + (l * t));
+        System.out.println("Luas Permukaan Balok " + Lp);
+
         input.close();
     }
 
@@ -33,5 +36,8 @@ public class HitungBalok19 {
         return volume;
     }
 
-    
+    static int hitungLuasPermukaanBalok(int p, int l, int t) {
+        int luasPermukaan = 2 * (hitungLuas(p, l) + (p * t) + (l + t));
+        return luasPermukaan;
+    }
 }
